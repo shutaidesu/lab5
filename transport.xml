@@ -1,0 +1,23 @@
+<houselist>
+    <habitation>
+        <id>1</id>
+        <name>Volkov street, 6</name>
+        <coordinates>
+            <x>12</x>
+            <y>15</y>
+        </coordinates>
+        <creationDate>13.10.23</creationDate>
+        <area>65</area>
+        <numberOfRooms>5</numberOfRooms>
+        <numberOfBathrooms>2</numberOfBathrooms>
+        <furnish>DESIGNER</furnish>
+        <transport>NONE</transport>
+        <house>
+            <name>Grinde</name>
+            <year>2023</year>
+            <numberOfFloors>20</numberOfFloors>
+            <numberOfFlatsOnFloor>3</numberOfFlatsOnFloor>
+            <numberOfLifts>3</numberOfLifts>
+        </house>
+    </habitation>
+</houselist>
