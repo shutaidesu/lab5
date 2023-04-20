@@ -1,4 +1,8 @@
 package model;
 
-public class Furnish {
+public enum Furnish {
+    DESIGNER,
+    FINE,
+    BAD,
+    LITTLE;
 }

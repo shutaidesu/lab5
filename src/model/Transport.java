@@ -1,4 +1,8 @@
 package model;
 
-public class Transport {
+public enum Transport {
+    FEW,
+    NONE,
+    LITTLE,
+    ENOUGH;
 }
