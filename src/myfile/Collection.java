@@ -5,9 +5,9 @@ import model.HouseComplex;
 
 import java.io.FileNotFoundException;
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.Hashtable;
 import java.util.Comparator;
-/*
 public class Collection {
 
     private Hashtable<HouseComplex, String> house;
@@ -41,12 +41,13 @@ public class Collection {
         return dateInit;
     }
 
+
     public Hashtable<HouseComplex, String> getHouse(){
-        return house;
+        return house.get();
     }
 
     public void add(House houses){
-        house.add(houses);
+        house.put(houses);
     }
     public String getType(){
         return house.getClass().getName();
@@ -54,17 +55,17 @@ public class Collection {
     public void clear(){
         house.clear();
     }
-    public House getById(long id){
+    public House getById(String name){
         for (House houses : house){
-            if (houses.getId() == id){
+            if (houses.getName() == name){
                 return houses;
             }
         }
         return null;
     }
 
-    public Worker getBySalary(float salary){
-        for (Worker worker : workers){
+    public HouseComplex getBySalary(float salary){
+        for (HouseComplex worker : workers){
             if (worker.getSalary() == salary){
                 return worker;
             }
@@ -112,5 +113,6 @@ public class Collection {
     public void removeAllBySalary(float salary) {
         house.removeIf(houses -> houses.getSalary() == salary);
     }
+
+    public void removeAllBy
 }
-*/

@@ -3,6 +3,7 @@ package myfile;
 import model.HouseComplex;
 
 import java.io.*;
+import java.util.HashSet;
 import java.util.Hashtable;
 import java.io.FileNotFoundException;
 import javax.xml.parsers.ParserConfigurationException;
@@ -38,7 +39,18 @@ public class FileManager {
         return houseComplex;
     }
 
-    //public void save(Hashtable<HouseComplex, String> hashtable){}
+    public void save(Hashtable<HouseComplex, String> hashtable){
 
-    //public boolean checkHouseComplexId(){}
+    }
+
+    public boolean checkHouseComplexId(Hashtable<HouseComplex, String> houseComplexs){
+        HashSet<Long> set = new HashSet<>();
+        for(HouseComplex houseComplex : houseComplexs){
+            if(set.contains(houseComplex.getId())){
+                return false;
+            }
+            set.add(houseComplex.getId());
+        }
+        return true;
+    }
 }
