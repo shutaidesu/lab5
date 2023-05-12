@@ -1,7 +1,11 @@
 package commands;
 
+import model.Flat;
 import util.console.Console;
 import managers.CollectionManager;
+
+import java.util.Iterator;
+import java.util.Set;
 
 /**
  * Команда 'print_descending'. Выводит элементы в порядке убывания.
@@ -25,6 +29,14 @@ public class PrintDescending extends Command{
      */
     @Override
     public boolean apply(String[] arguments) {
+        Set<Flat> keys = collectionManager.getCollectionForSet().keySet();
+        Iterator<Flat> itr = keys.iterator();
 
+        // traverse the TreeMap using iterator
+        while (itr.hasNext()) {
+            int i = itr.next().getId();
+            System.out.println(i + " " + collectionManager.getById(i));
+        }
+        return true;
     }
 }

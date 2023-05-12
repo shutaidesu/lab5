@@ -14,7 +14,7 @@ import java.util.*;
  * @author shutaidesu
  */
 public class CollectionManager {
-    private Map<Flat, String> collection = new Hashtable<Flat, String>();
+    private Hashtable<Flat, String> collection = new Hashtable<Flat, String>();
     private LocalDateTime lastInitTime;
     private LocalDateTime lastSaveTime;
     private final FileManager fileManager;
@@ -45,8 +45,12 @@ public class CollectionManager {
     /**
      * @return коллекция.
      */
-    public Collection<Flat> getCollection() {
+    public Set<Flat> getCollection() {
         return collection.keySet();
+    }
+
+    public Hashtable<Flat, String> getCollectionForSet() {
+        return collection;
     }
 
     /**
