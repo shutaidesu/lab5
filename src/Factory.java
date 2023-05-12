@@ -11,7 +11,7 @@ public class Factory {
     private final HashMap<String, Command> commandMap;
     private final HashSet<String> commandsWithArgs;
 
-    public Factory(Collection collection){
+    public Factory(Collection collection) {
         commandMap = new HashMap<>();
         commandMap.put("info", new Info(collection));
         commandMap.put("add", new Add(collection));
@@ -59,6 +59,9 @@ public class Factory {
             return false;
         }
         return true;
+    }
+
+         */
     }
 }
 

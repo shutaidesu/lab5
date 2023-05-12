@@ -14,8 +14,9 @@ public class Save extends Command{
     /**
      * Write the collection to the file
      */
+
     @Override
     public void execute(String[] args){
-        collection.save();
+        System.out.println("");
     }
 }

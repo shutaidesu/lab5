@@ -9,7 +9,6 @@ import java.util.HashSet;
 import java.util.Hashtable;
 import java.util.Comparator;
 public class Collection {
-
     private Hashtable<HouseComplex, String> house;
 
     private LocalDateTime dateSave;
@@ -42,8 +41,8 @@ public class Collection {
     }
 
 
-    public Hashtable<HouseComplex, String> getHouse(){
-        return house.get();
+    public Hashtable<HouseComplex, String> getHouse(House house){
+        return house.get(houses);
     }
 
     public void add(House houses){
@@ -114,5 +113,6 @@ public class Collection {
         house.removeIf(houses -> houses.getSalary() == salary);
     }
 
-    public void removeAllBy
+    public void removeAllBy(){}
+    */
 }

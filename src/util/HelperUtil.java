@@ -159,7 +159,7 @@ public class HelperUtil {
         if (nameOrg.length() > 1847) throw  new IllegalArgumentException("некорректный формат полного имени");
         if (emploeesCount <= 0) throw  new IllegalArgumentException("зарплата не может быть <= 0 ");
         if (Objects.equals(emploeesCount,null)) throw  new NullArgumentException("зарплата не может быть null");
-        if (Objects.equals(status1,null)) throw  new NullArgumentException("статус не может быть null");
+        //if (Objects.equals(status1,null)) throw  new NullArgumentException("статус не может быть null");
         if (address == null) throw  new NullArgumentException("данные не могут быть null");
     }
 }

@@ -1,5 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <houselist>
-    <habitation>
+    <habitation rollno="1">
         <id>1</id>
         <name>Volkov street, 6</name>
         <coordinates>
@@ -11,7 +12,7 @@
         <numberOfRooms>5</numberOfRooms>
         <numberOfBathrooms>2</numberOfBathrooms>
         <furnish>DESIGNER</furnish>
-        <transport>NONE</transport>
+        <transport>LITTLE</transport>
         <house>
             <name>Grinde</name>
             <year>2023</year>
@@ -20,5 +21,25 @@
             <numberOfLifts>3</numberOfLifts>
         </house>
     </habitation>
-
+    <habitation rollno="2">
+        <id>2</id>
+        <name>Belorysskaya, 6</name>
+        <coordinates>
+            <x>157</x>
+            <y>255</y>
+        </coordinates>
+        <creationDate>10.08.2017</creationDate>
+        <area>200</area>
+        <numberOfBathrooms>1</numberOfBathrooms>
+        <numberOfRooms>2</numberOfRooms>
+        <furnish>LITTLE</furnish>
+        <transport>NONE</transport>
+        <house>
+            <name>Belka</name>
+            <year>2023</year>
+            <numberOfFloors>12</numberOfFloors>
+            <numberOfFlatsOnFloor>16</numberOfFlatsOnFloor>
+            <numberOfLifts>4</numberOfLifts>
+        </house>
+    </habitation>
 </houselist>

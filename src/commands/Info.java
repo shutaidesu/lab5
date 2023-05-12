@@ -26,5 +26,6 @@ public class Info extends Command{
         } else {
             System.out.println("Коллекция сохранена: " + collection.getDateSave());
         }
+
     }
 }
