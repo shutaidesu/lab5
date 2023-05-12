@@ -33,19 +33,19 @@ public class FilterByTransport extends Command {
             if (arguments[1].isEmpty()) throw new WrongAmountOfElementsException();
 
             var transport = (arguments[1]);
-            var flats = filterByTransport(transport);
+            var flats = filterByTransport(Transport.valueOf(transport));
 
             if (flats.isEmpty()) {
-                console.println("Продуктов с ценой " + transport + " не обнаружено.");
+                console.println("Квартир странспортом " + transport + " не обнаружено.");
             } else {
-                console.println("Продуктов с ценой " + transport + ": " + flats.size() + " шт.\n");
+                console.println("Квартир с транспортом " + transport + ": " + flats.size() + " шт.\n");
                 flats.forEach(console::println);
             }
 
             return true;
 
         } catch (NumberFormatException exception) {
-            console.printError("Цена должна быть представлена числом!");
+            console.printError("Транспорт должна быть представлена !");
         } catch (WrongAmountOfElementsException exception) {
             console.printError("Неправильное количество аргументов!");
             console.println("Использование: '" + getName() + "'");
