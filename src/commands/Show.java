@@ -1,27 +1,34 @@
 package commands;
 
-import myexeption.EmptyCollectionException;
-import managers.Collection;
-import model.Flat;
+import managers.CollectionManager;
+import util.Console;
+
 /**
- * The `ShowCommand` class is a command that prints all the elements of the collection in string
- * representation
+ * Команда 'show'. Выводит все элементы коллекции.
+ * @author shutaidesu
  */
-public class Show extends Command{
-    private Collection collection;
-    public Show(Collection collection) {
-        this.collection=collection;
+public class Show extends Command {
+    private final Console console;
+    private final CollectionManager collectionManager;
+
+    public Show(Console console, CollectionManager collectionManager) {
+        super("show", "вывести все элементы коллекции");
+        this.console = console;
+        this.collectionManager = collectionManager;
     }
 
     /**
-     * * Prints all the organizations in the collection
-     * @param args the arguments passed to the command.
+     * Выполняет команду
+     * @return Успешность выполнения команды.
      */
     @Override
-    public void execute(String[] args) {
-        if (collection.countElements() == 0) throw new EmptyCollectionException();
-        for (Flat house : collection.getHouse()){
-            System.out.println(house);
+    public boolean apply(String[] arguments) {
+        if (!arguments[1].isEmpty()) {
+            console.println("Использование: '" + getName() + "'");
+            return false;
         }
+
+        console.println(collectionManager);
+        return true;
     }
 }

@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 
 /**
  * Команда 'info'. Выводит информацию о коллекции.
- * @author maxbarsukov
+ * @author shutaidesu
  */
 public class Info extends Command {
     private final Console console;

@@ -1,7 +1,5 @@
 package commands;
 
-import managers.Collection;
-
 /**
  * Write the collection to the file
  */
