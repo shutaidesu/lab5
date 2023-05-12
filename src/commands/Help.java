@@ -1,29 +1,36 @@
 package commands;
 
+import managers.CommandManager;
+import util.console.Console;
+
 /**
- * The `HelpCommand` class is a command that displays the help of the available commands
+ * Команда 'help'. Выводит справку по доступным командам
+ * @author shutaidesu
  */
-public class Help extends Command{
+public class Help extends Command {
+    private final Console console;
+    private final CommandManager commandManager;
+
+    public Help(Console console, CommandManager commandManager) {
+        super("help", "вывести справку по доступным командам");
+        this.console = console;
+        this.commandManager = commandManager;
+    }
+
     /**
-     * Prints information about the available commands in the program to the console.
+     * Выполняет команду
+     * @return Успешность выполнения команды.
      */
     @Override
-    public void execute(String[] args) {
-        System.out.println("info : вывести в стандартный поток вывода информацию о коллекции (тип, дата инициализации, количество элементов и т.д.)\n" +
-                "show : вывести в стандартный поток вывода все элементы коллекции в строковом представлении\n" +
-                "add {element} : добавить новый элемент в коллекцию\n" +
-                "update id {element} : обновить значение элемента коллекции, id которого равен заданному\n" +
-                "remove_by_id id : удалить элемент из коллекции по его id\n" +
-                "clear : очистить коллекцию\n" +
-                "save : сохранить коллекцию в файл\n" +
-                "execute_script file_name : считать и исполнить скрипт из указанного файла. В скрипте содержатся команды в таком же виде, в котором их вводит пользователь в интерактивном режиме.\n" +
-                "exit : завершить программу (без сохранения в файл)\n" +
-                "remove_first : удалить первый элемент из коллекции\n" +
-                "remove_head : вывести первый элемент коллекции и удалить его\n" +
-                "remove_greater {element} : удалить из коллекции все элементы, превышающие заданный\n" +
-                "remove_all_by_salary salary : удалить из коллекции все элементы, значение поля salary которого эквивалентно заданному\n" +
-                "print_descending : вывести элементы коллекции в порядке убывания\n" +
-                "print_field_ascending_organization : вывести значения поля organization всех элементов в порядке возрастания\n" +
-                "remove_by_id id : удалить элемент из коллекции по его id");
+    public boolean apply(String[] arguments) {
+        if (!arguments[1].isEmpty()) {
+            console.println("Использование: '" + getName() + "'");
+            return false;
+        }
+
+        commandManager.getCommands().values().forEach(command -> {
+            console.printTable(command.getName(), command.getDescription());
+        });
+        return true;
     }
 }

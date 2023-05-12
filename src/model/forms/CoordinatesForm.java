@@ -3,7 +3,7 @@ package model.forms;
 import myexeption.IncorrectInputInScriptException;
 import myexeption.InvalidFormException;
 import model.Coordinates;
-import util.Console;
+import util.console.Console;
 import util.Interrogator;
 
 import java.util.NoSuchElementException;

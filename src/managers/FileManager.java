@@ -3,7 +3,7 @@ package managers;
 import java.util.Map;
 
 import model.Flat;
-import util.Console;
+import util.console.Console;
 
 import javax.management.modelmbean.XMLParseException;
 import java.io.*;

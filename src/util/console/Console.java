@@ -1,4 +1,4 @@
-package util;
+package util.console;
 
 public interface Console {
     void print(Object obj);

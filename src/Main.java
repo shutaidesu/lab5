@@ -1,33 +1,24 @@
-import managers.CollectionManager;
-import managers.FileManager;
-import managers.CommandManager;
-import commands.*;
-import java.io.File;
-import java.io.IOException;
 
-import model.House;
+import commands.*;
+
+import managers.CollectionManager;
+import managers.CommandManager;
+import managers.FileManager;
+
 import model.Flat;
+import model.House;
 import util.*;
+import util.console.StandardConsole;
 
 public class Main {
     //importnig the path to the file
     private static String filePath = System.getenv("FILE");
-    private static File inputFile = new File(filePath);
 
-    public static void main(String[] args) throws IOException{
-        System.out.println(filePath);
-        // Create a File object with appropriate xml file name
-        File file = new File(filePath);
+    public static void main(String[] args){
 
-        try{
-            FileManager fileManager = new FileManager(filePath, null);
-            collection = new Collection(fileManager);
-        } catch(Exception e){
-            System.out.println(e.getMessage());
-            System.exit(2);
-        }
+        var console = new StandardConsole();
 
-        var fileManager = new FileManager(args[0], console);
+        var fileManager = new FileManager(filePath, console);
         var collectionManager = new CollectionManager(fileManager);
 
         House.updateNextId(collectionManager);

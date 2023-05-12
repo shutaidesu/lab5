@@ -4,15 +4,15 @@ import managers.CollectionManager;
 import util.console.Console;
 
 /**
- * Команда 'show'. Выводит все элементы коллекции.
+ * Команда 'clear'. Очищает коллекцию.
  * @author shutaidesu
  */
-public class Show extends Command {
+public class Clear extends Command {
     private final Console console;
     private final CollectionManager collectionManager;
 
-    public Show(Console console, CollectionManager collectionManager) {
-        super("show", "вывести все элементы коллекции");
+    public Clear(Console console, CollectionManager collectionManager) {
+        super("clear", "очистить коллекцию");
         this.console = console;
         this.collectionManager = collectionManager;
     }
@@ -28,7 +28,8 @@ public class Show extends Command {
             return false;
         }
 
-        console.println(collectionManager);
+        collectionManager.clearCollection();
+        console.println("Коллекция очищена!");
         return true;
     }
 }

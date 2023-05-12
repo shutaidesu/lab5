@@ -1,20 +1,34 @@
 package commands;
 
+import managers.CollectionManager;
+import util.console.Console;
+
 /**
- * Write the collection to the file
+ * Команда 'save'. Сохраняет коллекцию в файл.
+ * @author shutaidesu
  */
-public class Save extends Command{
-    private Collection collection;
+public class Save extends Command {
+    private final Console console;
+    private final CollectionManager collectionManager;
 
-    public Save(Collection collection) {
-        this.collection = collection;
+    public Save(Console console, CollectionManager collectionManager) {
+        super("save", "сохранить коллекцию в файл");
+        this.console = console;
+        this.collectionManager = collectionManager;
     }
-    /**
-     * Write the collection to the file
-     */
 
+    /**
+     * Выполняет команду
+     * @return Успешность выполнения команды.
+     */
     @Override
-    public void execute(String[] args){
-        System.out.println("");
+    public boolean apply(String[] arguments) {
+        if (!arguments[1].isEmpty()) {
+            console.println("Использование: '" + getName() + "'");
+            return false;
+        }
+
+        collectionManager.saveCollection();
+        return true;
     }
 }

@@ -1,6 +1,6 @@
 package commands;
 
-import util.Console;
+import util.console.Console;
 /**
  * Команда 'exit'. Завершает выполнение.
  * @author shutaidesu

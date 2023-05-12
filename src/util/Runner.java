@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 import myexeption.ScriptRecursionException;
 import managers.CommandManager;
-import util.Console;
+import util.console.Console;
 
 public class Runner {
     public enum ExitCode {

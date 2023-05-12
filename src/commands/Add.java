@@ -5,7 +5,7 @@ import myexeption.InvalidFormException;
 import myexeption.WrongAmountOfElementsException;
 import managers.CollectionManager;
 import model.forms.FlatForm;
-import util.Console;
+import util.console.Console;
 
 /**
  * Команда 'add'. Добавляет новый элемент в коллекцию.

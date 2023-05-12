@@ -4,15 +4,15 @@ import managers.CollectionManager;
 import util.console.Console;
 
 /**
- * Команда 'show'. Выводит все элементы коллекции.
+ * Команда 'head'. Выводит первый элемент коллекции.
  * @author shutaidesu
  */
-public class Show extends Command {
+public class Head extends Command {
     private final Console console;
     private final CollectionManager collectionManager;
 
-    public Show(Console console, CollectionManager collectionManager) {
-        super("show", "вывести все элементы коллекции");
+    public Head(Console console, CollectionManager collectionManager) {
+        super("head", "вывести первый элемент коллекции");
         this.console = console;
         this.collectionManager = collectionManager;
     }
@@ -28,7 +28,12 @@ public class Show extends Command {
             return false;
         }
 
-        console.println(collectionManager);
+        if (collectionManager.getCollection().isEmpty()) {
+            console.println("Коллекция пуста!");
+        } else {
+            console.println(collectionManager.getFirst());
+        }
+
         return true;
     }
 }

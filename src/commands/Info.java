@@ -1,7 +1,7 @@
 package commands;
 
 import managers.CollectionManager;
-import util.Console;
+import util.console.Console;
 
 import java.time.LocalDateTime;
 

@@ -2,7 +2,7 @@ package model.forms;
 
 import model.*;
 import myexeption.*;
-import util.Console;
+import util.console.Console;
 import managers.CollectionManager;
 import util.Interrogator;
 

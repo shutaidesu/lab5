@@ -3,7 +3,7 @@ package managers;
 import model.Flat;
 import model.House;
 import com.google.common.collect.Iterables;
-import util.Console;
+import util.console.Console;
 
 import java.time.LocalDateTime;
 import java.util.*;
