@@ -25,6 +25,10 @@ public class ReplaceIfLowe extends Command{
      */
     @Override
     public boolean apply(String[] arguments) {
+        try{
 
+        } catch (){
+
+        }
     }
 }

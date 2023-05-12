@@ -36,6 +36,7 @@ public class Flat extends Element{
         this.transport = transport;
         this.house = house;
     }
+
     /**
      * Обновляет указатель следующего ID
      * @param collectionManager манагер коллекций

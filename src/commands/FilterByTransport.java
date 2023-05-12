@@ -32,7 +32,7 @@ public class FilterByTransport extends Command {
         try {
             if (arguments[1].isEmpty()) throw new WrongAmountOfElementsException();
 
-            var transport = Enum.parseEnum(arguments[1]);
+            var transport = (arguments[1]);
             var flats = filterByTransport(transport);
 
             if (flats.isEmpty()) {

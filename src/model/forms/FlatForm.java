@@ -33,10 +33,10 @@ public class FlatForm extends Form<Flat> {
                 askName(),
                 askCoordinates(),
                 LocalDateTime.now(),
-                askYear(),
-                askNumberOfFloors(),
-                askNumberOfLifts(),
-                askNumberOfFlatsOnFloor()
+                askArea(),
+                askNumberOfRooms(),
+                askNumberOfBathrooms(),
+                ask
         );
         if (!flat.validate()) throw new InvalidFormException();
         return flat;
@@ -73,153 +73,96 @@ public class FlatForm extends Form<Flat> {
         return new CoordinatesForm(console).build();
     }
 
-    private Integer askYear() throws IncorrectInputInScriptException {
+    private Double askArea() throws IncorrectInputInScriptException {
         var fileMode = Interrogator.fileMode();
-        int year;
+        double area;
         while (true) {
             try {
-                console.println("Введите год квартиры:");
+                console.println("Введите площадь квартиры:");
                 console.ps2();
 
                 var strPrice = Interrogator.getUserScanner().nextLine().trim();
                 if (fileMode) console.println(strPrice);
 
-                year = Integer.parseInt(strPrice);
-                if (year < MIN_AREA) throw new NotInDeclaredLimitsException();
+                area = Integer.parseInt(strPrice);
+                if (area < MIN_AREA) throw new NotInDeclaredLimitsException();
                 break;
             } catch (NoSuchElementException exception) {
-                console.printError("Год квартиры не распознан!");
+                console.printError("Площадь квартиры не распознан!");
                 if (fileMode) throw new IncorrectInputInScriptException();
             } catch (NotInDeclaredLimitsException exception) {
-                console.printError("Год квартиры должен быть больше нуля!");
+                console.printError("Площадь квартиры должен быть больше нуля!");
                 if (fileMode) throw new IncorrectInputInScriptException();
             } catch (NumberFormatException exception) {
-                console.printError("Год квартиры должен быть представлен числом!");
+                console.printError("Площадь квартиры должен быть представлен числом!");
                 if (fileMode) throw new IncorrectInputInScriptException();
             } catch (NullPointerException | IllegalStateException exception) {
                 console.printError("Непредвиденная ошибка!");
                 System.exit(0);
             }
         }
-        return year;
+        return area;
     }
 
-    private Integer askNumberOfFlatsOnFloor() throws IncorrectInputInScriptException {
+    private Integer askNumberOfRooms() throws IncorrectInputInScriptException {
         var fileMode = Interrogator.fileMode();
-        int numberOfFlatsOnFloor;
+        int numberOfRooms;
         while (true) {
             try {
-                console.println("Введите год квартиры:");
+                console.println("Введите число комнат для квартиры:");
                 console.ps2();
 
                 var strPrice = Interrogator.getUserScanner().nextLine().trim();
                 if (fileMode) console.println(strPrice);
 
-                numberOfFlatsOnFloor = Integer.parseInt(strPrice);
-                if (numberOfFlatsOnFloor < MIN_AREA) throw new NotInDeclaredLimitsException();
+                numberOfRooms = Integer.parseInt(strPrice);
+                if (numberOfRooms < MIN_AREA) throw new NotInDeclaredLimitsException();
                 break;
             } catch (NoSuchElementException exception) {
-                console.printError("Год квартиры не распознан!");
+                console.printError("Число комнат квартиры не распознан!");
                 if (fileMode) throw new IncorrectInputInScriptException();
             } catch (NotInDeclaredLimitsException exception) {
-                console.printError("Год квартиры должен быть больше нуля!");
+                console.printError("Число комнат квартиры должно быть больше нуля!");
                 if (fileMode) throw new IncorrectInputInScriptException();
             } catch (NumberFormatException exception) {
-                console.printError("Год квартиры должен быть представлен числом!");
+                console.printError("Число комнат квартиры должно быть представлено числом!");
                 if (fileMode) throw new IncorrectInputInScriptException();
             } catch (NullPointerException | IllegalStateException exception) {
                 console.printError("Непредвиденная ошибка!");
                 System.exit(0);
             }
         }
-        return numberOfFlatsOnFloor;
+        return numberOfRooms;
     }
 
-    private Long askNumberOfFloors() throws IncorrectInputInScriptException {
+    private Long askNumberOfBathrooms() throws IncorrectInputInScriptException {
         var fileMode = Interrogator.fileMode();
-        long numberOfFloors;
+        long askNumberOfBathrooms;
         while (true) {
             try {
-                console.println("Введите цену продукта:");
+                console.println("Введите число ванных комнат для квартиры:");
                 console.ps2();
 
                 var strPrice = Interrogator.getUserScanner().nextLine().trim();
                 if (fileMode) console.println(strPrice);
 
-                numberOfFloors = Long.parseLong(strPrice);
-                if (numberOfFloors < MIN_ROOMS) throw new NotInDeclaredLimitsException();
+                askNumberOfBathrooms = Long.parseLong(strPrice);
+                if (askNumberOfBathrooms < MIN_ROOMS) throw new NotInDeclaredLimitsException();
                 break;
             } catch (NoSuchElementException exception) {
-                console.printError("Цена продукта не распознана!");
+                console.printError("Число ванных комнат для квартиры не распознана!");
                 if (fileMode) throw new IncorrectInputInScriptException();
             } catch (NotInDeclaredLimitsException exception) {
-                console.printError("Цена продукта должна быть больше нуля!");
+                console.printError("Число ванных комнат для квартиры должно быть больше нуля!");
                 if (fileMode) throw new IncorrectInputInScriptException();
             } catch (NumberFormatException exception) {
-                console.printError("Цена продукта должна быть представлена числом!");
+                console.printError("Число ванных комнат для квартиры должно быть представлено числом!");
                 if (fileMode) throw new IncorrectInputInScriptException();
             } catch (NullPointerException | IllegalStateException exception) {
                 console.printError("Непредвиденная ошибка!");
                 System.exit(0);
             }
         }
-        return numberOfFloors;
-    }
-
-    private Long askNumberOfLifts() throws IncorrectInputInScriptException {
-        var fileMode = Interrogator.fileMode();
-        long numberOfLifts;
-        while (true) {
-            try {
-                console.println("Введите цену продукта:");
-                console.ps2();
-
-                var strPrice = Interrogator.getUserScanner().nextLine().trim();
-                if (fileMode) console.println(strPrice);
-
-                numberOfLifts = Long.parseLong(strPrice);
-                if (numberOfLifts < MIN_ROOMS) throw new NotInDeclaredLimitsException();
-                break;
-            } catch (NoSuchElementException exception) {
-                console.printError("Цена продукта не распознана!");
-                if (fileMode) throw new IncorrectInputInScriptException();
-            } catch (NotInDeclaredLimitsException exception) {
-                console.printError("Цена продукта должна быть больше нуля!");
-                if (fileMode) throw new IncorrectInputInScriptException();
-            } catch (NumberFormatException exception) {
-                console.printError("Цена продукта должна быть представлена числом!");
-                if (fileMode) throw new IncorrectInputInScriptException();
-            } catch (NullPointerException | IllegalStateException exception) {
-                console.printError("Непредвиденная ошибка!");
-                System.exit(0);
-            }
-        }
-        return numberOfLifts;
-    }
-
-    private String askPartNumber() throws IncorrectInputInScriptException {
-        String partNumber;
-        var fileMode = Interrogator.fileMode();
-        while (true) {
-            try {
-                console.println("Введите номер части продукта:");
-                console.ps2();
-
-                partNumber = Interrogator.getUserScanner().nextLine().trim();
-                if (fileMode) console.println(partNumber);
-                if (partNumber.equals("")) {
-                    partNumber = null;
-                }
-                break;
-            } catch (NoSuchElementException exception) {
-                console.printError("Номер части не распознан!");
-                if (fileMode) throw new IncorrectInputInScriptException();
-            } catch (IllegalStateException exception) {
-                console.printError("Непредвиденная ошибка!");
-                System.exit(0);
-            }
-        }
-
-        return partNumber;
+        return askNumberOfBathrooms;
     }
 }

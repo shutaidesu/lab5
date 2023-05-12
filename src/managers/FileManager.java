@@ -57,7 +57,7 @@ public class FileManager {
                 if(stringBuilder.length() == 0){
                     stringBuilder = new StringBuilder("[]");
                 }
-                Hashtable<Flat, String> collection = new Hashtable<Flat, String>();
+                Hashtable<Flat, String> collection =;
                 console.println("Коллекция успешно загружена!");
                 return collection;
             } catch (Exception e) {
