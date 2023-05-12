@@ -1,5 +1,7 @@
 package managers;
 
+import java.util.Map;
+
 import model.Flat;
 import util.Console;
 
@@ -27,7 +29,7 @@ public class FileManager {
      * @param collection коллекция
      */
 
-    public void writerCollection(Collection<Flat> collection){
+    public void writeCollection(Map<Flat, String> collection){
         try(BufferedWriter collectionPrintWriter = new BufferedWriter(new FileWriter(fileName))){
             collectionPrintWriter.write(collection);
             console.println("Коллекция успешна сохранена в файл!");
@@ -40,7 +42,7 @@ public class FileManager {
      * Считывает коллекцию из файл.
      * @return Считанная коллекция
      */
-    public Collection<Flat> readFile() throws FileNotFoundException{
+    public Map<Flat, String> readCollection() throws FileNotFoundException{
         if(fileName != null && fileName.isEmpty()) {
             try (InputStreamReader inp = new InputStreamReader(new FileInputStream(fileName))) {
                 BufferedReader reader = new BufferedReader(inp);

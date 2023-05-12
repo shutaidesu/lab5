@@ -1,7 +1,6 @@
 package model;
 
 import managers.CollectionManager;
-import util.Element;
 
 import java.util.*;
 
@@ -10,7 +9,7 @@ import java.util.*;
  * @author shutaidesu
  */
 
-public class House extends Element{
+public class House{
     private static transient Map<String, House> house = new HashMap<>();
     private String name; //Поле может быть null
     private int year; //Значение поля должно быть больше 0
@@ -26,29 +25,6 @@ public class House extends Element{
         this.numberOfLifts = numberOfLifts;
         house.put(this.name, this);
     }
-    /**
-     * Обновляет указатель следующего ID
-     * @param collectionManager манагер коллекций
-     */
-    public static void updateNextId(CollectionManager collectionManager) {
-        collectionManager
-                .getCollection()
-                .stream()
-                .map(Flat::getHouse)
-                .filter(Objects::nonNull)
-                .forEach(house -> {
-                    house.put(house.name, house);
-                });
-
-        var maxId = collectionManager
-                .getCollection()
-                .stream()
-                .map(Flat::getHouse)
-                .filter(Objects::nonNull)
-                .map(House::getId)
-                .mapToInt(Integer::intValue).max().orElse(0);
-        nextId = maxId + 1;
-    }
 
     public static Map<String, House> allHouse() {
         return house;
@@ -58,9 +34,7 @@ public class House extends Element{
      * Валидирует правильность полей.
      * @return true, если все верно, иначе false
      */
-    @Override
     public boolean validate() {
-        if (id == null || id <= 0) return false;
         if (name == null || name.isEmpty()) return false;
         if (year <= 0) return false;
         if (numberOfFloors == null || numberOfFloors <= 0) return false;
@@ -68,33 +42,24 @@ public class House extends Element{
         return numberOfLifts <= 0;
     }
 
-    public static House byId(Integer id) {
-        return house.get(id);
-    }
-
-    public int getId() {
-        return id;
-    }
-
     public String getName() {
         return name;
     }
 
-    public long getEmployeesCount() {
-        return employeesCount;
+    public long getYear() {
+        return year;
     }
 
-    public OrganizationType getType() {
-        return type;
+    public long getNumberOfFloors() {
+        return numberOfFloors;
     }
 
-    public Address getPostalAddress() {
-        return postalAddress;
+    public int getNumberOfFlatsOnFloor() {
+        return numberOfFlatsOnFloor;
     }
 
-    @Override
-    public int compareTo(Element element) {
-        return (this.id - element.getId());
+    public long getNumberOfLifts(){
+        return numberOfLifts;
     }
 
     @Override
@@ -102,20 +67,20 @@ public class House extends Element{
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         House that = (House) o;
-        return employeesCount == that.employeesCount && Objects.equals(id, that.id) && Objects.equals(name, that.name) && type == that.type && Objects.equals(postalAddress, that.postalAddress);
+        return numberOfFloors == that.numberOfFloors && Objects.equals(numberOfFlatsOnFloor, that.numberOfFlatsOnFloor)&& Objects.equals(name, that.name) && year == that.year && Objects.equals(numberOfLifts, that.numberOfLifts);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, employeesCount, type, postalAddress);
+        return Objects.hash(name, numberOfFloors, numberOfFlatsOnFloor, numberOfLifts);
     }
 
     @Override
     public String toString() {
-        return "Организация \"" + name+ "\" №" + id +
-                "; Число сотрудников: " + employeesCount +
-                "; Вид: " + type +
-                "; Адрес: " + postalAddress;
+        return "Дом \"" + name + "\"" +
+                "; Год постройки: " + year +
+                "; Количество этажей: " + numberOfFloors +
+                "; Количество квартир на этаже: " + numberOfFlatsOnFloor +
+                "; Количество лифтов: " + numberOfLifts;
     }
-}
 }

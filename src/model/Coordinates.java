@@ -2,7 +2,6 @@ package model;
 
 import util.Validatable;
 import java.util.Objects;
-import util.Console;
 
 /**
  * Классс координат.
@@ -12,12 +11,7 @@ public class Coordinates implements Validatable {
     private final Integer x; // Поле не может быть null и не может быть больше 386
     private final Integer y; // Поле не может быть null
 
-    private final Console console;
-
     public Coordinates (Integer x, Integer y) {
-        if(x > 386){
-
-        }
         this.x = x;
         this.y = y;
     }
@@ -28,7 +22,7 @@ public class Coordinates implements Validatable {
      */
     @Override
     public boolean validate() {
-        if (x == null) return false;
+        if (x == null || x > 386) return false;
         return y != null;
     }
 

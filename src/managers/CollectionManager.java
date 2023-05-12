@@ -6,16 +6,14 @@ import com.google.common.collect.Iterables;
 import util.Console;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.PriorityQueue;
-import java.util.Queue;
+import java.util.*;
 
 /**
  * Оперирует коллекцией.
  * @author shutaidesu
  */
 public class CollectionManager {
-    private Queue<Flat> collection = new PriorityQueue<Flat>();
+    private Map<Flat, String> collection = new Hashtable<Flat, String>();
     private LocalDateTime lastInitTime;
     private LocalDateTime lastSaveTime;
     private final FileManager fileManager;
@@ -31,22 +29,22 @@ public class CollectionManager {
     public void validateAll(Console console) {
         House.allHouse().values().forEach(house -> {
             if (!house.validate()) {
-                console.printError("Организация с id=" + house.getId() + " имеет невалидные поля.");
+                console.printError("Дом с name=" + house.getName() + " имеет невалидные поля.");
             }
         });
 
         (new ArrayList<>(this.getCollection())).forEach(flat -> {
             if (!flat.validate()) {
-                console.printError("Продукт с id=" + flat.getId() + " имеет невалидные поля.");
+                console.printError("Квартира с id=" + flat.getId() + " имеет невалидные поля.");
             }
         });
-        console.println("! Загруженные продукты валидны.");
+        console.println("! Загруженные здания валидны.");
     }
 
     /**
      * @return коллекция.
      */
-    public Queue<Flat> getCollection() {
+    public Map<Flat, String> getCollection() {
         return collection;
     }
 
@@ -98,8 +96,8 @@ public class CollectionManager {
      * @param id ID элемента.
      * @return Элемент по его ID или null, если не найдено.
      */
-    public Product getById(int id) {
-        for (Product element : collection) {
+    public Flat getById(int id) {
+        for (Flat element : collection) {
             if (element.getId() == id) return element;
         }
         return null;
@@ -110,7 +108,7 @@ public class CollectionManager {
      * @return Проверяет, существует ли элемент с таким ID.
      */
     public boolean checkExist(int id) {
-        for (Product element : collection) {
+        for (Flat element : collection) {
             if (element.getId() == id) return true;
         }
         return false;
@@ -120,8 +118,8 @@ public class CollectionManager {
      * @param elementToFind элемент, который нужно найти по значению.
      * @return Найденный элемент (null если нен найден).
      */
-    public Product getByValue(Product elementToFind) {
-        for (Product element : collection) {
+    public Flat getByValue(Flat elementToFind) {
+        for (Flat element : collection) {
             if (element.equals(elementToFind)) return element;
         }
         return null;
@@ -131,16 +129,16 @@ public class CollectionManager {
      * Добавляет элемент в коллекцию
      * @param element Элемент для добавления.
      */
-    public void addToCollection(Product element) {
-        collection.add(element);
-        Product.touchNextId();
+    public void addToCollection(Flat element) {
+        collection.put(element, null);
+        Flat.touchNextId();
     }
 
     /**
      * Удаляет элемент из коллекции.
      * @param element Элемент для удаления.
      */
-    public void removeFromCollection(Product element) {
+    public void removeFromCollection(Flat element) {
         collection.remove(element);
     }
 
@@ -155,7 +153,7 @@ public class CollectionManager {
      * Сохраняет коллекцию в файл
      */
     public void saveCollection() {
-        dumpManager.writeCollection(collection);
+        fileManager.writeCollection((Map<Flat, String>) collection);
         lastSaveTime = LocalDateTime.now();
     }
 
@@ -163,7 +161,7 @@ public class CollectionManager {
      * Загружает коллекцию из файла.
      */
     private void loadCollection() {
-        collection = (PriorityQueue<Product>) dumpManager.readCollection();
+        collection = (Hashtable<Flat, String>) fileManager.readCollection();
         lastInitTime = LocalDateTime.now();
     }
 
@@ -173,7 +171,7 @@ public class CollectionManager {
         var last = getLast();
 
         StringBuilder info = new StringBuilder();
-        for (Product product : collection) {
+        for (Flat product : collection) {
             info.append(product);
             if (product != last) info.append("\n\n");
         }

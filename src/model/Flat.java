@@ -8,8 +8,8 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 /**
- * Класс продукта
- * @author maxbarsukov
+ * Класс квартиры.
+ * @author shutaidesu
  */
 public class Flat extends Element{
     private static int nextId = 1;
@@ -82,7 +82,7 @@ public class Flat extends Element{
 
     @Override
     public int getId() {
-        return id;
+        return (int) id;
     }
 
     public String getName() {
@@ -123,7 +123,7 @@ public class Flat extends Element{
 
     @Override
     public int compareTo(Element element) {
-        return (this.id - element.getId());
+        return (int) (this.id - element.getId());
     }
 
     public int compareTo(Flat flat) {
@@ -159,5 +159,4 @@ public class Flat extends Element{
         info += "\n Дом:\n    " + house;
         return info;
     }
-}
 }
