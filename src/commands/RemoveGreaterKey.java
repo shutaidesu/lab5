@@ -30,12 +30,12 @@ public class RemoveGreaterKey extends Command{
     public boolean apply(String[] arguments) {
         try {
             if (!arguments[1].isEmpty()) throw new WrongAmountOfElementsException();
-            console.println("* Создание нового продукта (add_if_max):");
-            var product = (new FlatForm(console, collectionManager)).build();
+            console.println("* Удаление квартиры (remove_greater_key):");
+            var flat = (new FlatForm(console, collectionManager)).build();
 
             var maxPrice = maxPrice();
-            if (product.getPrice() > maxPrice) {
-                collectionManager.addToCollection(product);
+            if (flat.getPrice() > maxPrice) {
+                collectionManager.addToCollection(flat);
                 console.println("Продукт успешно добавлен!");
             } else {
                 console.println("Продукт не добавлен, цена не максимальная (" + product.getPrice() + " < " + maxPrice +")");

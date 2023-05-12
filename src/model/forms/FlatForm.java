@@ -36,7 +36,9 @@ public class FlatForm extends Form<Flat> {
                 askArea(),
                 askNumberOfRooms(),
                 askNumberOfBathrooms(),
-                ask
+                askFurnish(),
+                askTransport(),
+                askHouse()
         );
         if (!flat.validate()) throw new InvalidFormException();
         return flat;
@@ -81,10 +83,10 @@ public class FlatForm extends Form<Flat> {
                 console.println("Введите площадь квартиры:");
                 console.ps2();
 
-                var strPrice = Interrogator.getUserScanner().nextLine().trim();
-                if (fileMode) console.println(strPrice);
+                var strArea = Interrogator.getUserScanner().nextLine().trim();
+                if (fileMode) console.println(strArea);
 
-                area = Integer.parseInt(strPrice);
+                area = Integer.parseInt(strArea);
                 if (area < MIN_AREA) throw new NotInDeclaredLimitsException();
                 break;
             } catch (NoSuchElementException exception) {
@@ -112,10 +114,10 @@ public class FlatForm extends Form<Flat> {
                 console.println("Введите число комнат для квартиры:");
                 console.ps2();
 
-                var strPrice = Interrogator.getUserScanner().nextLine().trim();
-                if (fileMode) console.println(strPrice);
+                var strNumber = Interrogator.getUserScanner().nextLine().trim();
+                if (fileMode) console.println(strNumber);
 
-                numberOfRooms = Integer.parseInt(strPrice);
+                numberOfRooms = Integer.parseInt(strNumber);
                 if (numberOfRooms < MIN_AREA) throw new NotInDeclaredLimitsException();
                 break;
             } catch (NoSuchElementException exception) {
@@ -143,10 +145,10 @@ public class FlatForm extends Form<Flat> {
                 console.println("Введите число ванных комнат для квартиры:");
                 console.ps2();
 
-                var strPrice = Interrogator.getUserScanner().nextLine().trim();
-                if (fileMode) console.println(strPrice);
+                var strNumber = Interrogator.getUserScanner().nextLine().trim();
+                if (fileMode) console.println(strNumber);
 
-                askNumberOfBathrooms = Long.parseLong(strPrice);
+                askNumberOfBathrooms = Long.parseLong(strNumber);
                 if (askNumberOfBathrooms < MIN_ROOMS) throw new NotInDeclaredLimitsException();
                 break;
             } catch (NoSuchElementException exception) {
@@ -164,5 +166,17 @@ public class FlatForm extends Form<Flat> {
             }
         }
         return askNumberOfBathrooms;
+    }
+
+    private House askHouse(){
+        return null;
+    }
+
+    private Furnish askFurnish(){
+        return null;
+    }
+
+    private Transport askTransport(){
+        return null;
     }
 }
