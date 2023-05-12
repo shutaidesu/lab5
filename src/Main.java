@@ -21,7 +21,6 @@ public class Main {
         var fileManager = new FileManager(filePath, console);
         var collectionManager = new CollectionManager(fileManager);
 
-        House.updateNextId(collectionManager);
         Flat.updateNextId(collectionManager);
         collectionManager.validateAll(console);
 
@@ -29,19 +28,19 @@ public class Main {
             register("help", new Help(console, this));
             register("info", new Info(console, collectionManager));
             register("show", new Show(console, collectionManager));
-            register("add", new Add(console, collectionManager));
+            register("insert", new Insert(console, collectionManager));
             register("update", new Update(console, collectionManager));
-            register("remove_by_id", new RemoveById(console, collectionManager));
+            register("remove_by_key", new RemoveByKey(console, collectionManager));
             register("clear", new Clear(console, collectionManager));
             register("save", new Save(console, collectionManager));
             register("execute_script", new ExecuteScript(console));
             register("exit", new Exit(console));
-            register("head", new Head(console, collectionManager));
-            register("add_if_max", new AddIfMax(console, collectionManager));
-            register("add_if_min", new AddIfMin(console, collectionManager));
-            register("sum_of_price", new SumOfPrice(console, collectionManager));
-            register("filter_by_price", new FilterByPrice(console, collectionManager));
-            register("filter_contains_part_number", new FilterContainsPartNumber(console, collectionManager));
+            register("remove_greater", new RemoveGreater(console, collectionManager));
+            register("replace_if_lowe", new ReplaceIfLowe(console, collectionManager));
+            register("remove_greater_key", new RemoveGreaterKey(console, collectionManager));
+            register("sum_of_number_of_bathrooms", new SumOfNumberOfBathrooms(console, collectionManager));
+            register("filter_by_transport", new FilterByTransport(console, collectionManager));
+            register("print_descending", new PrintDescending(console, collectionManager));
         }};
 
         new Runner(console, commandManager).interactiveMode();

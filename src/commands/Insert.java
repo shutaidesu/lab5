@@ -8,15 +8,15 @@ import model.forms.FlatForm;
 import util.console.Console;
 
 /**
- * Команда 'add'. Добавляет новый элемент в коллекцию.
+ * Команда 'insert'. Добавляет новый элемент в коллекцию.
  * @author shutaidesu
  */
-public class Add extends Command {
+public class Insert extends Command {
     private final Console console;
     private final CollectionManager collectionManager;
 
-    public Add(Console console, CollectionManager collectionManager) {
-        super("add {element}", "добавить новый элемент в коллекцию");
+    public Insert(Console console, CollectionManager collectionManager) {
+        super("insert <null> {element}", "добавить новый элемент в коллекцию");
         this.console = console;
         this.collectionManager = collectionManager;
     }
