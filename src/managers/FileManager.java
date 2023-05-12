@@ -1,11 +1,10 @@
-package myfile;
+package managers;
 
-import model.HouseComplex;
+import model.Flat;
 import util.Console;
 
 import javax.management.modelmbean.XMLParseException;
 import java.io.*;
-import java.util.HashSet;
 import java.util.Hashtable;
 import java.io.FileNotFoundException;
 import java.util.NoSuchElementException;
@@ -17,19 +16,31 @@ import java.util.NoSuchElementException;
 
 public class FileManager {
     private String fileName;
-    private int id = 0;
     private final Console console;
 
     public FileManager(String filename, Console console){
-        this.id++;
         this.fileName = fileName;
         this.console = console;
     }
     /**
+     * Записывает коллекцию в файл.
+     * @param collection коллекция
+     */
+
+    public void writerCollection(Collection<Flat> collection){
+        try(BufferedWriter collectionPrintWriter = new BufferedWriter(new FileWriter(fileName))){
+            collectionPrintWriter.write(collection);
+            console.println("Коллекция успешна сохранена в файл!");
+        } catch(IOException e){
+            console.printError("Загрузочный файл не может быть открыт!");
+        }
+    }
+
+    /**
      * Считывает коллекцию из файл.
      * @return Считанная коллекция
      */
-    public Collection<HouseComplex> readFile() throws FileNotFoundException{
+    public Collection<Flat> readFile() throws FileNotFoundException{
         if(fileName != null && fileName.isEmpty()) {
             try (InputStreamReader inp = new InputStreamReader(new FileInputStream(fileName))) {
                 BufferedReader reader = new BufferedReader(inp);
@@ -44,7 +55,7 @@ public class FileManager {
                 if(stringBuilder.length() == 0){
                     stringBuilder = new StringBuilder("[]");
                 }
-                Hashtable<HouseComplex, String> collection = ;
+                Hashtable<Flat, String> collection = ;
                 console.println("Коллекция успешно загружена!");
                 return collection;
             } catch (Exception e) {
@@ -62,23 +73,6 @@ public class FileManager {
         } else {
             console.printError("Переменная окружения с путем загрузочного файла не найдена!");
         }
-        return new Hashtable<>;
+        return new Hashtable<>();
     }
-
-    public void save(Hashtable<HouseComplex, String> hashtable){
-
-    }
-
-    /*public boolean checkHouseComplexId(Hashtable<HouseComplex, String> houseComplexs){
-        HashSet<Long> set = new HashSet<>();
-        for(HouseComplex houseComplex : houseComplexs){
-            if(set.contains(houseComplex.getId())){
-                return false;
-            }
-            set.add(houseComplex.getId());
-        }
-        return true;
-    }
-
-     */
 }

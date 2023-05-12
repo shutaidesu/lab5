@@ -1,15 +1,14 @@
-package myfile;
+package managers;
 
 import model.House;
-import model.HouseComplex;
+import model.Flat;
 
 import java.io.FileNotFoundException;
 import java.time.LocalDateTime;
-import java.util.HashSet;
 import java.util.Hashtable;
 import java.util.Comparator;
 public class Collection {
-    private Hashtable<HouseComplex, String> house;
+    private Hashtable<Flat, String> house;
 
     private LocalDateTime dateSave;
 
@@ -41,7 +40,7 @@ public class Collection {
     }
 
 
-    public Hashtable<HouseComplex, String> getHouse(House house){
+    public Hashtable<Flat, String> getHouse(House house){
         return house.get(houses);
     }
 
@@ -63,8 +62,8 @@ public class Collection {
         return null;
     }
 
-    public HouseComplex getBySalary(float salary){
-        for (HouseComplex worker : workers){
+    public Flat getBySalary(float salary){
+        for (Flat worker : workers){
             if (worker.getSalary() == salary){
                 return worker;
             }
@@ -72,7 +71,7 @@ public class Collection {
         return null;
     }
     public void removeById(long id) {
-        Hashtable<HouseComplex, String> houseHashtable = new Hashtable<>(house);
+        Hashtable<Flat, String> houseHashtable = new Hashtable<>(house);
         for (int i = 0; i < houseHashtable.size(); ++i) {
             if (houseHashtable.get(i).getId() == id) {
                 houseHashtable.remove(i);

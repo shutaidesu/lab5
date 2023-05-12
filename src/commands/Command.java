@@ -1,14 +1,52 @@
 package commands;
 
-public abstract class Command {
-    public abstract void execute(String [] args);
-    private boolean flag = true;
+import java.util.Objects;
 
-    public boolean getFlag() {
-        return flag;
+/**
+ * Абстрактная команда с именем и описанием
+ * @author shutaidesu
+ */
+public abstract class Command implements Describable, Executable {
+    private final String name;
+    private final String description;
+
+    public Command(String name, String description) {
+        this.name = name;
+        this.description = description;
     }
 
-    public void setFlag(boolean flag) {
-        this.flag = flag;
+    /**
+     * @return Название и использование команды.
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * @return Описание команды.
+     */
+    public String getDescription() {
+        return description;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Command command = (Command) o;
+        return Objects.equals(name, command.name) && Objects.equals(description, command.description);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, description);
+    }
+
+    @Override
+    public String toString() {
+        return "Command{" +
+                "name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                '}';
     }
 }

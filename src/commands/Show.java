@@ -1,8 +1,8 @@
 package commands;
 
 import myexeption.EmptyCollectionException;
-import myfile.Collection;
-import model.HouseComplex;
+import managers.Collection;
+import model.Flat;
 /**
  * The `ShowCommand` class is a command that prints all the elements of the collection in string
  * representation
@@ -20,7 +20,7 @@ public class Show extends Command{
     @Override
     public void execute(String[] args) {
         if (collection.countElements() == 0) throw new EmptyCollectionException();
-        for (HouseComplex house : collection.getHouse()){
+        for (Flat house : collection.getHouse()){
             System.out.println(house);
         }
     }

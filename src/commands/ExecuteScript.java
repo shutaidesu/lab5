@@ -1,15 +1,16 @@
 package commands;
 
 import util.Console;
+
 /**
- * Команда 'exit'. Завершает выполнение.
+ * Команда 'execute_script'. Выполнить скрипт из файла.
  * @author shutaidesu
  */
-public class Exit extends Command {
+public class ExecuteScript extends Command {
     private final Console console;
 
-    public Exit(Console console) {
-        super("exit", "завершить программу (без сохранения в файл)");
+    public ExecuteScript(Console console) {
+        super("execute_script <file_name>", "исполнить скрипт из указанного файла");
         this.console = console;
     }
 
@@ -19,12 +20,12 @@ public class Exit extends Command {
      */
     @Override
     public boolean apply(String[] arguments) {
-        if (!arguments[1].isEmpty()) {
+        if (arguments[1].isEmpty()) {
             console.println("Использование: '" + getName() + "'");
             return false;
         }
 
-        console.println("Завершение выполнения...");
+        console.println("Выполнение скрипта '" + arguments[1] + "'...");
         return true;
     }
 }

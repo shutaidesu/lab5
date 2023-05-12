@@ -1,6 +1,6 @@
 
-import myfile.Collection;
-import myfile.FileManager;
+import managers.Collection;
+import managers.FileManager;
 
 import java.io.File;
 import java.io.IOException;

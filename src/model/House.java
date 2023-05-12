@@ -1,6 +1,17 @@
 package model;
 
-public class House implements Comparable<House>{
+import managers.CollectionManager;
+import util.Element;
+
+import java.util.*;
+
+/**
+ * Класс организации
+ * @author shutaidesu
+ */
+
+public class House extends Element{
+    private static transient Map<String, House> house = new HashMap<>();
     private String name; //Поле может быть null
     private int year; //Значение поля должно быть больше 0
     private Long numberOfFloors; //Поле не может быть null, Значение поля должно быть больше 0
@@ -13,65 +24,98 @@ public class House implements Comparable<House>{
         this.numberOfFloors = numberOfFloors;
         this.numberOfFlatsOnFloor = numberOfFlatsOnFloor;
         this.numberOfLifts = numberOfLifts;
+        house.put(this.name, this);
+    }
+    /**
+     * Обновляет указатель следующего ID
+     * @param collectionManager манагер коллекций
+     */
+    public static void updateNextId(CollectionManager collectionManager) {
+        collectionManager
+                .getCollection()
+                .stream()
+                .map(Flat::getHouse)
+                .filter(Objects::nonNull)
+                .forEach(house -> {
+                    house.put(house.name, house);
+                });
+
+        var maxId = collectionManager
+                .getCollection()
+                .stream()
+                .map(Flat::getHouse)
+                .filter(Objects::nonNull)
+                .map(House::getId)
+                .mapToInt(Integer::intValue).max().orElse(0);
+        nextId = maxId + 1;
     }
 
-    public House(){
-
+    public static Map<String, House> allHouse() {
+        return house;
     }
 
-    public String getName(){
+    /**
+     * Валидирует правильность полей.
+     * @return true, если все верно, иначе false
+     */
+    @Override
+    public boolean validate() {
+        if (id == null || id <= 0) return false;
+        if (name == null || name.isEmpty()) return false;
+        if (year <= 0) return false;
+        if (numberOfFloors == null || numberOfFloors <= 0) return false;
+        if (numberOfFlatsOnFloor <= 0) return false;
+        return numberOfLifts <= 0;
+    }
+
+    public static House byId(Integer id) {
+        return house.get(id);
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
         return name;
     }
 
-    public void setName(String name){
-        this.name = name;
+    public long getEmployeesCount() {
+        return employeesCount;
     }
 
-    public int getYear(){
-        return year;
+    public OrganizationType getType() {
+        return type;
     }
 
-    public void setYear(int year){
-        this.year = year;
-    }
-
-    public Long getNumberOfFloors(){
-        return numberOfFloors;
-    }
-
-    public void setNumberOfFloors(Long numberOfFloors){
-        this.numberOfFloors = numberOfFloors;
-    }
-
-    public int getNumberOfFlatsOnFloor(){
-        return numberOfFlatsOnFloor;
-    }
-
-    public void setNumberOfFlatsOnFloor(int numberOfFlatsOnFloor){
-        this.numberOfFlatsOnFloor = numberOfFlatsOnFloor;
-    }
-
-    public long getNumberOfLifts(){
-        return numberOfLifts;
-    }
-
-    public void setNumberOfLifts(long numberOfLifts){
-        this.numberOfLifts = numberOfLifts;
+    public Address getPostalAddress() {
+        return postalAddress;
     }
 
     @Override
-    public int compareTo(House e){
-        return name.compareTo(e.name);
+    public int compareTo(Element element) {
+        return (this.id - element.getId());
     }
 
     @Override
-    public String toString(){
-        return "House{" +
-                "name='" + name + '\'' +
-                ", year=" + year +
-                ", numberOfFloors=" + numberOfFloors +
-                ", numberOfFlatsOnFloor=" + numberOfFlatsOnFloor +
-                ", numberOfLifts=" + numberOfLifts +
-                "}";
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        House that = (House) o;
+        return employeesCount == that.employeesCount && Objects.equals(id, that.id) && Objects.equals(name, that.name) && type == that.type && Objects.equals(postalAddress, that.postalAddress);
     }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, employeesCount, type, postalAddress);
+    }
+
+    @Override
+    public String toString() {
+        return "Организация \"" + name+ "\" №" + id +
+                "; Число сотрудников: " + employeesCount +
+                "; Вид: " + type +
+                "; Адрес: " + postalAddress;
+    }
+}
 }

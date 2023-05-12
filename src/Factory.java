@@ -1,6 +1,6 @@
 import myexeption.UnknownCommandException;
 import myexeption.WrongAmountOfElementsException;
-import myfile.Collection;
+import managers.Collection;
 import util.HelperUtil;
 import commands.*;
 

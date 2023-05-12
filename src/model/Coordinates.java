@@ -1,38 +1,52 @@
 package model;
 
-public class Coordinates {
-    private int x; //Максимальное значение поля: 386
-    private int y;
-    public Coordinates(int x, int y){
+import util.Validatable;
+import java.util.Objects;
+import util.Console;
+
+/**
+ * Классс координат.
+ * @author shutaidesu
+ */
+public class Coordinates implements Validatable {
+    private final Integer x; // Поле не может быть null и не может быть больше 386
+    private final Integer y; // Поле не может быть null
+
+    private final Console console;
+
+    public Coordinates (Integer x, Integer y) {
+        if(x > 386){
+
+        }
         this.x = x;
         this.y = y;
     }
 
-    public Coordinates(){
-
-    }
-
-    public float getX() {
-        return x;
-    }
-
-    public void setX(int x) {
-        this.x = x;
-    }
-
-    public long getY() {
-        return y;
-    }
-
-    public void setY(int y) {
-        this.y = y;
+    /**
+     * Валидирует правильность полей.
+     * @return true, если все верно, иначе false
+     */
+    @Override
+    public boolean validate() {
+        if (x == null) return false;
+        return y != null;
     }
 
     @Override
-    public String toString(){
-        return "Coordinates{" +
-                "x=" + x +
-                ", y=" + y +
-                '}';
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Coordinates that = (Coordinates) o;
+        return Objects.equals(x, that.x) && Objects.equals(y, that.y);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(x, y);
+    }
+
+    @Override
+    public String toString() {
+        return "(" + x + ", " + y + ")";
     }
 }

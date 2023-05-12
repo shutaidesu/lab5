@@ -1,6 +1,6 @@
 package commands;
 
-import myfile.Collection;
+import managers.Collection;
 
 /**
  * Write the collection to the file

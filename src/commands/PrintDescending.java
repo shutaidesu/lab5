@@ -1,6 +1,6 @@
 package commands;
 
-import myfile.Collection;
+import managers.Collection;
 
 import java.util.Iterator;
 import java.util.Set;
