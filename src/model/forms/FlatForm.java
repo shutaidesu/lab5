@@ -43,7 +43,6 @@ public class FlatForm extends Form<Flat> {
         if (!flat.validate()) throw new InvalidFormException();
         return flat;
     }
-
     private String askName() throws IncorrectInputInScriptException {
         String name;
         var fileMode = Interrogator.fileMode();
