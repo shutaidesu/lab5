@@ -10,11 +10,13 @@ import model.House;
 import util.*;
 import util.console.StandardConsole;
 
+import java.io.FileNotFoundException;
+
 public class Main {
     //importnig the path to the file
-    private static String filePath = System.getenv("FILE");
+    private static final String filePath = System.getenv("FILE");
 
-    public static void main(String[] args){
+    public static void main(String[] args) throws FileNotFoundException {
 
         var console = new StandardConsole();
 
@@ -44,8 +46,6 @@ public class Main {
         }};
 
         new Runner(console, commandManager).interactiveMode();
-    }
-
     }
 
 }

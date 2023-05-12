@@ -5,6 +5,7 @@ import model.House;
 import com.google.common.collect.Iterables;
 import util.console.Console;
 
+import java.io.FileNotFoundException;
 import java.time.LocalDateTime;
 import java.util.*;
 
@@ -18,7 +19,7 @@ public class CollectionManager {
     private LocalDateTime lastSaveTime;
     private final FileManager fileManager;
 
-    public CollectionManager(FileManager fileManager) {
+    public CollectionManager(FileManager fileManager) throws FileNotFoundException {
         this.lastInitTime = null;
         this.lastSaveTime = null;
         this.fileManager = fileManager;
@@ -33,7 +34,7 @@ public class CollectionManager {
             }
         });
 
-        (new ArrayList<>(this.getCollection())).forEach(flat -> {
+        (new HashMap<Flat, String>(this.getCollection())).forEach(flat -> {
             if (!flat.validate()) {
                 console.printError("Квартира с id=" + flat.getId() + " имеет невалидные поля.");
             }
@@ -81,7 +82,7 @@ public class CollectionManager {
      */
     public Flat getFirst() {
         if (collection.isEmpty()) return null;
-        return collection.peek();
+
     }
 
     /**
@@ -89,7 +90,7 @@ public class CollectionManager {
      */
     public Flat getLast() {
         if (collection.isEmpty()) return null;
-        return Iterables.getLast(collection);
+        return Iterables.getLast(collection.keySet());
     }
 
     /**
@@ -97,7 +98,7 @@ public class CollectionManager {
      * @return Элемент по его ID или null, если не найдено.
      */
     public Flat getById(int id) {
-        for (Flat element : collection) {
+        for (Flat element : collection.keySet()) {
             if (element.getId() == id) return element;
         }
         return null;
@@ -108,7 +109,7 @@ public class CollectionManager {
      * @return Проверяет, существует ли элемент с таким ID.
      */
     public boolean checkExist(int id) {
-        for (Flat element : collection) {
+        for (Flat element : collection.keySet()) {
             if (element.getId() == id) return true;
         }
         return false;
@@ -119,7 +120,7 @@ public class CollectionManager {
      * @return Найденный элемент (null если нен найден).
      */
     public Flat getByValue(Flat elementToFind) {
-        for (Flat element : collection) {
+        for (Flat element : collection.keySet()) {
             if (element.equals(elementToFind)) return element;
         }
         return null;
@@ -160,7 +161,7 @@ public class CollectionManager {
     /**
      * Загружает коллекцию из файла.
      */
-    private void loadCollection() {
+    private void loadCollection() throws FileNotFoundException {
         collection = (Hashtable<Flat, String>) fileManager.readCollection();
         lastInitTime = LocalDateTime.now();
     }
@@ -171,7 +172,7 @@ public class CollectionManager {
         var last = getLast();
 
         StringBuilder info = new StringBuilder();
-        for (Flat product : collection) {
+        for (Flat product : collection.keySet()) {
             info.append(product);
             if (product != last) info.append("\n\n");
         }

@@ -43,9 +43,6 @@ public class SumOfNumberOfBathrooms extends Command {
     }
 
     private Long getSumOfBathrooms() {
-        return collectionManager.getCollection().stream()
-                .map(Flat::getNumberOfBathrooms)
-                .mapToLong(Long::longValue)
-                .sum();
+        return collectionManager.getCollection().stream().map(Flat::getNumberOfBathrooms).mapToLong(Long::longValue).sum();
     }
 }

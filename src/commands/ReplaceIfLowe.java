@@ -24,5 +24,7 @@ public class ReplaceIfLowe extends Command{
      * @return Успешность выполнения команды.
      */
     @Override
-    public boolean apply(String[] arguments) {}
+    public boolean apply(String[] arguments) {
+
+    }
 }
