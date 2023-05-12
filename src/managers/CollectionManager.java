@@ -34,9 +34,9 @@ public class CollectionManager {
             }
         });
 
-        (new HashMap<Flat, String>(this.getCollection())).forEach(flat -> {
-            if (!flat.validate()) {
-                console.printError("Квартира с id=" + flat.getId() + " имеет невалидные поля.");
+        (new ArrayList<>(this.getCollection())).forEach(Flat -> {
+            if (!Flat.validate()) {
+                console.printError("Квартира с id=" + Flat.getId() + " имеет невалидные поля.");
             }
         });
         console.println("! Загруженные здания валидны.");
@@ -45,8 +45,8 @@ public class CollectionManager {
     /**
      * @return коллекция.
      */
-    public Map<Flat, String> getCollection() {
-        return collection;
+    public Collection<Flat> getCollection() {
+        return collection.keySet();
     }
 
     /**
@@ -80,8 +80,9 @@ public class CollectionManager {
     /**
      * @return Первый элемент коллекции (null если коллекция пустая).
      */
-    public Flat getFirst() {
+    public String getFirst() {
         if (collection.isEmpty()) return null;
+        return collection.entrySet().iterator().next().getValue();
 
     }
 
