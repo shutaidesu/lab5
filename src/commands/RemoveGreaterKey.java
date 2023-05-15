@@ -34,11 +34,14 @@ public class RemoveGreaterKey extends Command{
             if (collectionManager.collectionSize() == 0) throw new CollectionIsEmptyException();
 
             var id = Integer.parseInt(arguments[1]);
-            var flatToRemove = collectionManager.getById(id);
-            if (flatToRemove == null) throw new NotFoundException();
-            if ()
-            collectionManager.removeFromCollection(flatToRemove);
-            console.println("Квартира успешно удалена.");
+            Flat flatToRemove;
+            for(int i = 0; i < collectionManager.collectionSize(); i++) {
+                flatToRemove = collectionManager.getById(i);
+                if (flatToRemove == null) throw new NotFoundException();
+                if (id > collectionManager.getId())
+                    collectionManager.removeFromCollection(flatToRemove);
+            }
+            console.println("Квартиры успешно удалены.");
             return true;
 
         } catch (WrongAmountOfElementsException exception) {

@@ -42,6 +42,19 @@ public class CollectionManager {
         console.println("! Загруженные здания валидны.");
     }
 
+    /**
+     * @return id.
+     */
+
+    public int getIdForRemove(){
+        return Flat.getIdForRemove();
+    }
+
+    /**
+     *
+     * @return минимальное значение.
+     */
+
     public double minValue(){
         if(collection.isEmpty())
             return 0L;

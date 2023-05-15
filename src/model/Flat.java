@@ -14,6 +14,8 @@ import java.util.Objects;
 public class Flat extends Element{
     private static int nextId = 1;
     private long id; //Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
+
+    private static int idRem;
     private String name; //Поле не может быть null, Строка не может быть пустой
     private Coordinates coordinates; //Поле не может быть null
     private java.time.LocalDateTime creationDate; //Поле не может быть null, Значение этого поля должно генерироваться автоматически
@@ -26,6 +28,7 @@ public class Flat extends Element{
 
     public Flat(String name, Coordinates coordinates, LocalDateTime creationDate, Double area, Integer numberOfRooms, long numberOfBathrooms, Furnish furnish, Transport transport, House house){
         this.id = nextId;
+        this.idRem = this.id;
         this.name = name;
         this.coordinates = coordinates;
         this.creationDate = creationDate;
@@ -75,6 +78,10 @@ public class Flat extends Element{
         this.furnish = flat.furnish;
         this.transport = flat.transport;
         this.house = flat.house;
+    }
+
+    public static int getIdForRemove(){
+        return (int) idRem;
     }
 
     public static void touchNextId() {
