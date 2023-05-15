@@ -38,7 +38,7 @@ public class RemoveGreaterKey extends Command{
             for(int i = 0; i < collectionManager.collectionSize(); i++) {
                 flatToRemove = collectionManager.getById(i);
                 if (flatToRemove == null) throw new NotFoundException();
-                if (id > collectionManager.getId())
+                if (id > collectionManager.getIdForRemove())
                     collectionManager.removeFromCollection(flatToRemove);
             }
             console.println("Квартиры успешно удалены.");
