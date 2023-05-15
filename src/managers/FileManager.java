@@ -20,6 +20,8 @@ public class FileManager {
     private String fileName;
     private final Console console;
 
+
+
     public FileManager(String filename, Console console){
         this.fileName = fileName;
         this.console = console;
@@ -31,7 +33,7 @@ public class FileManager {
 
     public void writeCollection(Map<Flat, String> collection){
         try(BufferedWriter collectionPrintWriter = new BufferedWriter(new FileWriter(fileName))){
-            collectionPrintWriter.write(collection);
+            collectionPrintWriter.write(000);
             console.println("Коллекция успешна сохранена в файл!");
         } catch(IOException e){
             console.printError("Загрузочный файл не может быть открыт!");

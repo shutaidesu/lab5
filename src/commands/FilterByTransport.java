@@ -18,7 +18,7 @@ public class FilterByTransport extends Command {
     private final CollectionManager collectionManager;
 
     public FilterByTransport(Console console, CollectionManager collectionManager) {
-        super("filter_by_transport <TRANSPORT>", "вывести элементы, значение поля transport которых равно заданному");
+        super("filter_by_transport transport", "вывести элементы, значение поля transport которых равно заданному");
         this.console = console;
         this.collectionManager = collectionManager;
     }

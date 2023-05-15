@@ -11,13 +11,14 @@ import util.*;
 import util.console.StandardConsole;
 
 import java.io.FileNotFoundException;
+import java.util.Scanner;
 
 public class Main {
     //importnig the path to the file
     private static final String filePath = System.getenv("FILE");
 
     public static void main(String[] args) throws FileNotFoundException {
-
+        Interrogator.setUserScanner(new Scanner(System.in));
         var console = new StandardConsole();
 
         var fileManager = new FileManager(filePath, console);

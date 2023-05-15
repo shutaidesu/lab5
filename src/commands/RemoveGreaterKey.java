@@ -1,5 +1,6 @@
 package commands;
 
+import model.Flat;
 import model.forms.FlatForm;
 import myexeption.*;
 
@@ -17,7 +18,7 @@ public class RemoveGreaterKey extends Command{
     private final CollectionManager collectionManager;
 
     public RemoveGreaterKey(Console console, CollectionManager collectionManager){
-        super("remove_greater_key <null>", " удалить из коллекции все элементы, ключ которых превышает заданный");
+        super("remove_greater_key null", " удалить из коллекции все элементы, ключ которых превышает заданный");
         this.console = console;
         this.collectionManager = collectionManager;
     }
@@ -28,26 +29,27 @@ public class RemoveGreaterKey extends Command{
      */
     @Override
     public boolean apply(String[] arguments) {
-        try {
-            if (!arguments[1].isEmpty()) throw new WrongAmountOfElementsException();
-            console.println("* Удаление квартиры (remove_greater_key):");
-            var flat = (new FlatForm(console, collectionManager)).build();
+        try{
+            if (arguments[1].isEmpty()) throw new WrongAmountOfElementsException();
+            if (collectionManager.collectionSize() == 0) throw new CollectionIsEmptyException();
 
-            var maxPrice = maxPrice();
-            if (flat.getPrice() > maxPrice) {
-                collectionManager.addToCollection(flat);
-                console.println("Продукт успешно добавлен!");
-            } else {
-                console.println("Продукт не добавлен, цена не максимальная (" + product.getPrice() + " < " + maxPrice +")");
-            }
+            var id = Integer.parseInt(arguments[1]);
+            var flatToRemove = collectionManager.getById(id);
+            if (flatToRemove == null) throw new NotFoundException();
+            if ()
+            collectionManager.removeFromCollection(flatToRemove);
+            console.println("Квартира успешно удалена.");
             return true;
 
         } catch (WrongAmountOfElementsException exception) {
-            console.printError("Неправильное количество аргументов!");
             console.println("Использование: '" + getName() + "'");
-        } catch (InvalidFormException exception) {
-            console.printError("Поля продукта не валидны! Продукт не создан!");
-        } catch (IncorrectInputInScriptException ignored) {}
+        } catch (CollectionIsEmptyException exception) {
+            console.printError("Коллекция пуста!");
+        } catch (NumberFormatException exception) {
+            console.printError("ID должен быть представлен числом!");
+        } catch (NotFoundException exception) {
+            console.printError("Квартиры с таким ID в коллекции нет!");
+        }
         return false;
     }
 }

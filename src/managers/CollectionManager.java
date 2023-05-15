@@ -42,6 +42,12 @@ public class CollectionManager {
         console.println("! Загруженные здания валидны.");
     }
 
+    public double minValue(){
+        if(collection.isEmpty())
+            return 0L;
+        return getCollection().stream().min(Comparator.comparing(Flat::getArea)).get().getArea();
+    }
+
     /**
      * @return коллекция.
      */
