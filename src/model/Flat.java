@@ -28,7 +28,7 @@ public class Flat extends Element{
 
     public Flat(String name, Coordinates coordinates, LocalDateTime creationDate, Double area, Integer numberOfRooms, long numberOfBathrooms, Furnish furnish, Transport transport, House house){
         this.id = nextId;
-        this.idRem = this.id;
+        this.idRem = (int) this.id;
         this.name = name;
         this.coordinates = coordinates;
         this.creationDate = creationDate;
