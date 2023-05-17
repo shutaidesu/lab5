@@ -13,7 +13,7 @@ public class RemoveByKey extends Command {
     private final CollectionManager collectionManager;
 
     public RemoveByKey(Console console, CollectionManager collectionManager) {
-        super("remove_by_id <ID>", "удалить элемент из коллекции по ID");
+        super("remove_key null", "удалить элемент из коллекции по ключу");
         this.console = console;
         this.collectionManager = collectionManager;
     }
