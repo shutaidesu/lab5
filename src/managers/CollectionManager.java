@@ -3,9 +3,13 @@ package managers;
 import model.Flat;
 import model.House;
 import com.google.common.collect.Iterables;
+import org.xml.sax.SAXException;
 import util.console.Console;
 
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerException;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.*;
 
@@ -14,12 +18,14 @@ import java.util.*;
  * @author shutaidesu
  */
 public class CollectionManager {
+
+    private final String filePath = System.getenv("FILE");
     private Hashtable<Flat, String> collection = new Hashtable<Flat, String>();
     private LocalDateTime lastInitTime;
     private LocalDateTime lastSaveTime;
     private final FileManager fileManager;
 
-    public CollectionManager(FileManager fileManager) throws FileNotFoundException {
+    public CollectionManager(FileManager fileManager) throws FileNotFoundException, ParserConfigurationException {
         this.lastInitTime = null;
         this.lastSaveTime = null;
         this.fileManager = fileManager;
@@ -177,16 +183,16 @@ public class CollectionManager {
     /**
      * Сохраняет коллекцию в файл
      */
-    public void saveCollection() {
-        fileManager.writeCollection((Map<Flat, String>) collection);
+    public void saveCollection() throws ParserConfigurationException, IOException, TransformerException, SAXException {
+        fileManager.writeToFile(filePath);
         lastSaveTime = LocalDateTime.now();
     }
 
     /**
      * Загружает коллекцию из файла.
      */
-    private void loadCollection() throws FileNotFoundException {
-        collection = (Hashtable<Flat, String>) fileManager.readCollection();
+    private void loadCollection() throws ParserConfigurationException {
+        fileManager.loadData(filePath);
         lastInitTime = LocalDateTime.now();
     }
 

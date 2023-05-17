@@ -7,6 +7,8 @@ import util.Element;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
+
+
 /**
  * Класс квартиры.
  * @author shutaidesu
@@ -16,6 +18,7 @@ public class Flat extends Element{
     private long id; //Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
 
     private static int idRem;
+
     private String name; //Поле не может быть null, Строка не может быть пустой
     private Coordinates coordinates; //Поле не может быть null
     private java.time.LocalDateTime creationDate; //Поле не может быть null, Значение этого поля должно генерироваться автоматически
@@ -78,6 +81,14 @@ public class Flat extends Element{
         this.furnish = flat.furnish;
         this.transport = flat.transport;
         this.house = flat.house;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public void setCreationDate(LocalDateTime creationDate) {
+        this.creationDate = creationDate;
     }
 
     public static int getIdForRemove(){

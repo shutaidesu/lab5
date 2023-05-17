@@ -10,6 +10,7 @@ import model.House;
 import util.*;
 import util.console.StandardConsole;
 
+import javax.xml.parsers.ParserConfigurationException;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
@@ -17,7 +18,7 @@ public class Main {
     //importnig the path to the file
     private static final String filePath = System.getenv("FILE");
 
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) throws FileNotFoundException, ParserConfigurationException {
         Interrogator.setUserScanner(new Scanner(System.in));
         var console = new StandardConsole();
 

@@ -11,6 +11,7 @@ import java.util.*;
 
 public class House{
     private static transient Map<String, House> house = new HashMap<>();
+
     private String name; //Поле может быть null
     private int year; //Значение поля должно быть больше 0
     private Long numberOfFloors; //Поле не может быть null, Значение поля должно быть больше 0

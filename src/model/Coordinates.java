@@ -16,6 +16,14 @@ public class Coordinates implements Validatable {
         this.y = y;
     }
 
+    public Integer getX(){
+        return x;
+    }
+
+    public Integer getY(){
+        return y;
+    }
+
     /**
      * Валидирует правильность полей.
      * @return true, если все верно, иначе false

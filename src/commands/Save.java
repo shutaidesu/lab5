@@ -1,7 +1,12 @@
 package commands;
 
 import managers.CollectionManager;
+import org.xml.sax.SAXException;
 import util.console.Console;
+
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerException;
+import java.io.IOException;
 
 /**
  * Команда 'save'. Сохраняет коллекцию в файл.
@@ -28,7 +33,17 @@ public class Save extends Command {
             return false;
         }
 
-        collectionManager.saveCollection();
+        try {
+            collectionManager.saveCollection();
+        } catch (ParserConfigurationException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (TransformerException e) {
+            throw new RuntimeException(e);
+        } catch (SAXException e) {
+            throw new RuntimeException(e);
+        }
         return true;
     }
 }
